@@ -1,0 +1,26 @@
+<templates xml:space="preserve">
+    <!-- Template principal -->
+    <t t-name="actor_app.Main">
+        <div class="container my-5 w-100 w-lg-50">
+            <t t-call="actor_app.UserInfo"/>
+            <ActorTable/>
+        </div>
+    </t>
+
+    <t t-name="actor_app.UserInfo">
+        <div class="w-25 ms-auto mb-3">
+            <div t-attf-class="card shadow-sm border-0 {{ state.user ? 'bg-light' : 'bg-dark text-white' }}">
+                <div class="card-body text-center">
+                    <t t-if="state.user">
+                        <strong t-esc="state.user"/>
+                        <div class="text-muted" t-esc="state.email"/>
+                        <span class="badge bg-success mt-2">Connected</span>
+                    </t>
+                    <t t-else="">
+                        <strong>Not Logged in</strong>
+                    </t>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t t-name="actor_app.Table">
+        <div t-if="!state.actors.length">
+            This list is empty !
+        </div>
+        <table t-if="state.actors.length" class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col" colspan="2">Name</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <t t-foreach="state.actors" t-as="actor" t-key="actor.id">
+                    <tr>
+                        <td>
+                            <t t-esc="actor.id" />
+                        </td>
+                        <td colspan="2">
+                            <a class="contact-info fs-5" t-att-data-actor_id="actor.id" href="#">
+                                <t t-esc="actor.name" />
+                            </a>
+                            <br />
+                            <t t-if="actor.phone">
+                                <strong>Phone:</strong>
+                                <span>
+                                    <t t-esc="actor.phone" />
+                                </span>
+                                <br />
+                            </t>
+                            <t t-if="actor.email">
+                                <strong>Email:</strong>
+                                <span>
+                                    <a t-att-href="'mailto:' + actor.email">
+                                        <t t-esc="actor.email" />
+                                    </a>
+                                </span>
+                                <br />
+                            </t>
+                        </td>
+                        <td class="text-end align-middle">
+                            <button role="button" class="btn btn-info mx-1" t-on-click.stop="() => this.addPreviewEditor(actor)"><i class="fa fa-pencil-square-o" /></button>
+                            <button role="button" class="btn btn-danger mx-1" t-on-click.stop="() => this.onRemoveActor(actor)"><i class="fa fa-trash" /></button>
+                        </td>
+                    </tr>
+                </t>
+            </tbody>
+        </table>
+    </t>
+</templates>

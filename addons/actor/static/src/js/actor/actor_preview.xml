@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="actor.Preview">
+        <Dialog size="size" title="title" contentClass="contentClass">
+            <form class="needs-validation" novalidate="">
+                <div class="mb-3">
+                    <label for="actorName" class="form-label">Name</label>
+                    <input type="text" id="actorName" class="form-control" t-model="props.actor.name" required=""/>
+                </div>
+                <div class="mb-3">
+                    <label for="actorEmail" class="form-label">Email</label>
+                    <input type="email" id="actorEmail" class="form-control" t-model="props.actor.email" required=""/>
+                </div>
+                <div class="mb-3">
+                    <label for="actorPhone" class="form-label">Phone</label>
+                    <input type="text" id="actorPhone" class="form-control" t-model="props.actor.phone"/>
+                </div>
+                <t t-set-slot="footer">
+                    <button t-on-click="cancel" type="button" class="btn btn-secondary me-2" >Cancel</button>
+                    <button t-on-click="confirm" type="submit" class="btn btn-primary">Save</button>
+                </t>
+            </form>
+        </Dialog>
+    </t>
+</templates>

@@ -1,0 +1,38 @@
+# Exclure le dossier Git interne
+.git/
+
+# Fichiers de cache Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyd
+*.swp
+
+# Exclure la configuration d'Odoo (sensibilité des credentials)
+odoo.conf
+
+# Logs, fichiers temporaires et sauvegardes
+*.log
+*.temp
+*.bak
+*.swp
+.DS_Store
+*.~undo-tree~
+
+# Exclure les fichiers de compilation et de dépendances
+*.egg-info/
+.mypy_cache/
+.vscode/
+.idea/
+.env
+.venv/
+*.sqlite3
+
+# Fichiers liés au frontend (si applicable)
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+dist/
+build/
