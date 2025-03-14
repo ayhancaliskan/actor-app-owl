@@ -1,6 +1,6 @@
 /** @odoo-module **/
 // owl
-import {Component, useState, xml} from "@odoo/owl";
+import {Component, useState, onWillStart} from "@odoo/owl";
 // utils
 import {useService} from '@web/core/utils/hooks';
 import {_t} from "@web/core/l10n/translation";
@@ -18,19 +18,16 @@ export class ActorTable extends Component {
         this.dialog = useService('dialog');
         this.notification = useService("notification");
         this.orm = useService("orm");
-        this.state = useState({
-            actors: [
-                {
-                    id: 1,
-                    name: "Leonardo DiCaprio",
-                    role: "Actor",
-                    age: 48,
-                    phone: "00XXX",
-                    email: "leonardo@example.com"
-                },
-                {id: 2, name: "Meryl Streep", role: "Actress", age: 74, phone: "00XXX", email: "Meryl@example.com"},
-            ],
+        this.state = useState({ actors: [] });
+
+        onWillStart(async () => {
+            console.log(this._fetchActorData())
+            this.state.actors = await this._fetchActorData();
         });
+
+    }
+    async _fetchActorData() {
+        return await this.orm.call("actor.actor", "search_read", [[], ["id", "name", "email", "phone", "age", "role"]]);
     }
 
     addPreviewEditor(actor) {
@@ -61,4 +58,5 @@ export class ActorTable extends Component {
             confirmLabel: _t("Confirm"),
         });
     }
+
 }

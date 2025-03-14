@@ -3,7 +3,7 @@
     <template id="actor_app">
         <t t-call="website.layout">
             <div id="wrap">
-                <h2 class="text-center my-4 text-center">Actor App - OWL</h2>
+                <h1 class="text-center my-4 text-center">Actor App - OWL</h1>
                 <owl-component name="actor_app.Main"/>
             </div>
         </t>

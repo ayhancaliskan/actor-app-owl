@@ -1,6 +1,6 @@
 /** @odoo-module **/
 // owl
-import {Component, useState, xml} from "@odoo/owl";
+import {Component, useState} from "@odoo/owl";
 // utils
 import {useBus, useService} from "@web/core/utils/hooks";
 import {registry} from "@web/core/registry"
@@ -9,7 +9,6 @@ import {isVisible} from "@web/core/utils/ui";
 import {_t} from "@web/core/l10n/translation";
 import {user} from "@web/core/user";
 import {browser} from "@web/core/browser/browser";
-import {session} from "@web/session";
 // components
 import {ActorTable} from "./actor/actor_table"
 
@@ -18,12 +17,36 @@ export class ActorApp extends Component {
     static components = {ActorTable};
 
     setup() {
-        super.setup()
-        // Todo display user infos + browser info (eg:which browser using)
-        this.state = useState({
-            user: user ? user.name : null,
-            email: user ? user.email : null,
-            session: session ? session.uid : null,
+        super.setup();
+        this.orm = useService("orm");
+
+        // extra no utils for actor dev
+        this._loadUserData();
+        this._detectBrowserInfo();
+    }
+
+    async _loadUserData() {
+        this.userData = useState({
+            user: "",
+            email: "",
+        });
+        console.log(user)
+        if (!user.userId) return;
+        const [currentUser] = await this.orm.read(
+            "res.users",
+            [user.userId],
+            ["name", "email"]
+        );
+        console.log(currentUser)
+        this.userData.user = currentUser.name;
+        this.userData.email = currentUser.email;
+    }
+
+    _detectBrowserInfo() {
+        const {userAgent, platform} = browser.navigator;
+        this.BrowserData = useState({
+            userAgent: userAgent || 'Unknown',
+            platform: platform || 'Unknown',
         });
     }
 }
@@ -35,19 +58,3 @@ export class ActorApp extends Component {
 
 registry.category("public_components").add("actor_app.Main", ActorApp);
 
-
-// testing for stater but not good application
-//import { App, Component, xml, whenReady, mount } from "@odoo/owl";
-// import { makeEnv, startServices } from "@web/env";
-// async function StartApp() {
-//     await whenReady();
-//     const target = document.getElementById("actor_app");
-//     if (!target) return;
-//     const env = makeEnv();
-//     await startServices(env);
-//     await mount(ActorApp, target, {
-//         env,
-//         dev: env.debug,
-//     });
-// }
-// StartApp()

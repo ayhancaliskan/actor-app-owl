@@ -3,24 +3,32 @@
     <t t-name="actor_app.Main">
         <div class="container my-5 w-100 w-lg-50">
             <t t-call="actor_app.UserInfo"/>
+            <t t-call="actor_app.BrowserInfo"/>
             <ActorTable/>
         </div>
     </t>
 
     <t t-name="actor_app.UserInfo">
-        <div class="w-25 ms-auto mb-3">
-            <div t-attf-class="card shadow-sm border-0 {{ state.user ? 'bg-light' : 'bg-dark text-white' }}">
+        <div class="mb-3">
+            <div t-attf-class="card shadow-sm border-0 {{ userData.user ? 'bg-light' : 'bg-dark text-white' }}">
                 <div class="card-body text-center">
-                    <t t-if="state.user">
-                        <strong t-esc="state.user"/>
-                        <div class="text-muted" t-esc="state.email"/>
-                        <span class="badge bg-success mt-2">Connected</span>
+                    <t t-if="userData.user">
+                        <h5 class="card-title">Welcome back, <span t-esc="userData.user"/></h5>
+                        <p class="card-subtitle text-muted mb-2" t-esc="userData.email"/>
+                        <span class="badge bg-success">Connected</span>
                     </t>
                     <t t-else="">
-                        <strong>Not Logged in</strong>
+                        <h5 class="card-title">Not logged in</h5>
+                        <p class="small text-muted">Log in to access your profile information.</p>
                     </t>
                 </div>
             </div>
+        </div>
+    </t>
+     <t t-name="actor_app.BrowserInfo">
+        <div class="small text-muted mb-4 border p-2">
+            <div><strong>UserAgent:</strong> <t t-esc="BrowserData.userAgent"/></div>
+            <div><strong>Platform:</strong> <t t-esc="BrowserData.platform"/></div>
         </div>
     </t>
 </templates>

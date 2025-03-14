@@ -6,8 +6,10 @@
     "author": "Eezee-It",
     "license": "LGPL-3",
     "category": "hidden",
-    "depends": [],
+    "depends": ["base", "web"],
     "data": [
+        "security/ir.model.access.csv",
+        "data/actor_demo.xml",
         "templates/actor_templates.xml",
     ],
     "assets": {

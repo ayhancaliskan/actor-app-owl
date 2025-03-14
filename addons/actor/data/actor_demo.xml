@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="actor_1" model="actor.actor">
+        <field name="name">Leonardo DiCaprio</field>
+        <field name="email">leonardo@example.com</field>
+        <field name="phone">+123456789</field>
+        <field name="age">48</field>
+        <field name="role">actor</field>
+    </record>
+    <record id="actor_2" model="actor.actor">
+        <field name="name">Meryl Streep</field>
+        <field name="email">meryl@example.com</field>
+        <field name="phone">+987654321</field>
+        <field name="age">74</field>
+        <field name="role">actress</field>
+    </record>
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_actor_public,actor.public,model_actor_actor,base.group_public,1,0,0,0
+access_actor_admin,actor.admin,model_actor_actor,base.group_system,1,1,1,1

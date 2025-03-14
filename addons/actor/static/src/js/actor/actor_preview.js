@@ -12,7 +12,6 @@ export class ActorPreview extends Component {
     static props = {
         actor: Object,
         confirm: {type: Function, optional: true},
-        // cancel: {type: Function, optional: true},
     };
 
     setup() {

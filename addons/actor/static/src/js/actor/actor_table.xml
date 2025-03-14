@@ -2,9 +2,15 @@
 <templates xml:space="preserve">
 
     <t t-name="actor_app.Table">
+        <h3>Actor Table</h3>
         <div t-if="!state.actors.length">
             This list is empty !
         </div>
+
+        <div t-if="state.actors.length" class="mb-3">
+            <button class="btn btn-primary" t-on-click="createNewActor">Add Actor</button>
+        </div>
+
         <table t-if="state.actors.length" class="table table-striped">
             <thead>
                 <tr>
